@@ -63,7 +63,7 @@ class SbertService
         $body = json_encode($payload);
         $cacheKey = '_vectorizeDirecToPy_' . $path . '_' . $body;
         $res = Cache::read($cacheKey, self::CACHE_GROUP);
-        if ($res !== null) {
+        if (is_array($res)) {
             return $res;
         }
         $domain = env('SBERT_DOMAIN', 'http://sbert-eduplex-nginx-svc:5000');
@@ -72,13 +72,19 @@ class SbertService
             $res = $this->_httpClient
                 ->get($domain . $path, ['_content' => $body], $options);
         } catch (\Exception $e) {
-            throw new DetailedException('Invalid sbert request: ' . $e->getMessage(), 500);
+            throw new DetailedException(
+                'Invalid sbert request: ' . $domain . $path . ' ' . $e->getMessage(),
+                500
+            );
         }
         if ($res->getJson()) {
             $toret = $res->getJson();
             Cache::write($cacheKey, $toret, self::CACHE_GROUP);
             return $toret;
         }
-        throw new DetailedException('Invalid sbert response: ' . $res->getStringBody(), 500);
+        throw new DetailedException(
+            'Invalid sbert response: ' . $res->getStringBody(),
+            500
+        );
     }
 }
