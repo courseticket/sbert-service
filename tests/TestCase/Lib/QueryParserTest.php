@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace SbertService\Test\TestCase\Lib;
 
-use Ai\Lib\Helpers\QueryParser;
 use PHPUnit\Framework\TestCase;
+use SbertService\Lib\QueryParser;
 
 class QueryParserTest extends TestCase
 {
     public function testParseAiSearchQuery()
     {
         $expected = 'üä my dear hello world';
-        $query = '&uuml;&auml; my+de/ar\n\xa0+<p>hello</p><p>world</p>'."\n\t";
+        $query = '&uuml;&auml;&nbsp;my+de/ar\n\xa0+<p>hello</p><p>world</p>'."\n\t";
 
         $queryParsed = QueryParser::parseAiSearchQuery($query);
 

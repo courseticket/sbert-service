@@ -61,6 +61,9 @@ class SbertService
     public function vectoriseDirectToPy(string $path, array $payload): array
     {
         $body = json_encode($payload);
+        if (!$body) {
+            throw new DetailedException('Invalid sbert payload', 400);
+        }
         $cacheKey = '_vectorizeDirecToPy_' . md5($path . '_' . $body);
         $res = Cache::read($cacheKey, self::CACHE_GROUP);
         if (is_array($res)) {

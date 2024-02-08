@@ -17,7 +17,8 @@ class QueryParser
 
     public static function parseHtml(string $query): string
     {
-        $query = trim(html_entity_decode($query));
+        $replacedNbsp = str_replace('&nbsp;', ' ', $query);
+        $query = trim(html_entity_decode($replacedNbsp));
         $replace1 = str_replace(['\t', '\xa0', "\t", "\xa0"], ' ', $query);
         $replaceNewLines = str_replace('\n', "\n", $replace1);
         $addNewLinesBetweenParagraphs = str_replace('</p><p>', '</p>' . "\n" . '<p>', $replaceNewLines);
