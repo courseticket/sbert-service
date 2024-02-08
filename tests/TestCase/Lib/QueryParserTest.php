@@ -1,6 +1,6 @@
 <?php
 
-namespace SbertService\Test\Lib;
+namespace SbertService\Test\TestCase\Lib;
 
 use Ai\Lib\Helpers\QueryParser;
 use PHPUnit\Framework\TestCase;
