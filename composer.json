@@ -5,7 +5,7 @@
   "type": "cakephp-plugin",
   "keywords": [
     "cakephp",
-    "sbert",
+    "eduplex",
     "api"
   ],
   "homepage": "https://github.com/courseticket/sbert-service",
