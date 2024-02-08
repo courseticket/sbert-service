@@ -61,7 +61,7 @@ class SbertService
     public function vectoriseDirectToPy(string $path, array $payload): array
     {
         $body = json_encode($payload);
-        $cacheKey = '_vectorizeDirecToPy_' . $path . '_' . $body;
+        $cacheKey = '_vectorizeDirecToPy_' . md5($path . '_' . $body);
         $res = Cache::read($cacheKey, self::CACHE_GROUP);
         if (is_array($res)) {
             return $res;
