@@ -58,7 +58,7 @@ class SbertService
         return $body['data'][0]['vector'];
     }
 
-    public function vectorizeDirecToPy(string $path, array $payload): array
+    public function vectoriseDirectToPy(string $path, array $payload): array
     {
         $body = json_encode($payload);
         $cacheKey = '_vectorizeDirecToPy_' . $path . '_' . $body;
