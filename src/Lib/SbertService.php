@@ -52,7 +52,8 @@ class SbertService
         }
         $body = $response->getJson();
         if (!$response->isSuccess() || !isset($body['data'][0]['vector'])) {
-            throw new InternalErrorException('Error vectorising the content: '
+            throw new InternalErrorException('Error vectorising from: '
+                . $endpointQuery . ' with content "' . $text . '" with response: '
                 . $response->getStringBody());
         }
         return $body['data'][0]['vector'];
