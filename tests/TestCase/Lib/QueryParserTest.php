@@ -11,7 +11,7 @@ class QueryParserTest extends TestCase
     public function testParseAiSearchQuery()
     {
         $expected = 'üä my dear hello world';
-        $query = '&uuml;&auml;&nbsp;my+de/ar\n\xa0+<p>hello</p><p>world</p>'."\n\t";
+        $query = '&uuml;&auml; my+de/ar\n\xa0+<p>hello</p><p>world</p>'."\n\t";
 
         $queryParsed = QueryParser::parseAiSearchQuery($query);
 
@@ -23,7 +23,7 @@ class QueryParserTest extends TestCase
         $expected = 'üä my+de/ar' . "\n"
             . ' + hello ' . "\n"
             . ' world';
-        $query = '&uuml;&auml; my+de/ar\n\xa0+<p><b>hello</b></p><p>world</p>'."\n\t";
+        $query = '&uuml;&auml;&nbsp;my+de/ar\n\xa0+<p><b>hello</b></p><p>world</p>'."\n\t";
 
         $queryParsed = QueryParser::parseHtml($query);
 
