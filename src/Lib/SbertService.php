@@ -36,6 +36,10 @@ class SbertService
         }
         $this->_httpClient->setConfig(['headers' => ['Authorization' => 'Bearer ' . $this->bearerToken]]);
         $endpointQuery = $domain . self::ENDPOINT;
+        $envEndpoint = env('SBERT_VECTORIZE_API', '');
+        if ($envEndpoint) {
+            $endpointQuery = $envEndpoint;
+        }
         $body = [
             'vectorise' => [$text]
         ];
