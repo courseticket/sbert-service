@@ -10,8 +10,11 @@ use RestApi\Lib\Exception\DetailedException;
 
 class SbertService
 {
+    public const MOCK_EMPTY_VECTORIZATION = 'MOCK_EMPTY_VECTORIZATION';
+
     private const ENDPOINT = '/edu/api/v1/ai/sbert/vectorise';
     private const CACHE_GROUP = 'default';
+
     private Client $_httpClient;
     private string $bearerToken = '';
 
@@ -28,6 +31,9 @@ class SbertService
 
     public function vectoriseViaProxy(string $text, string $domain): array
     {
+        if (env(SbertService::MOCK_EMPTY_VECTORIZATION, '') === SbertService::MOCK_EMPTY_VECTORIZATION) {
+            return [];
+        }
         if (!$this->bearerToken) {
             $this->bearerToken = env('SBERT_AUTH_TOKEN', '');
         }
