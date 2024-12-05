@@ -38,7 +38,7 @@ class SbertService
             $this->bearerToken = env('SBERT_AUTH_TOKEN', '');
         }
         if (!$this->bearerToken) {
-            throw new InternalErrorException('Bearer token is missing');
+            throw new InternalErrorException('Bearer token is missing. Try setting env SBERT_AUTH_TOKEN');
         }
         $this->_httpClient->setConfig(['headers' => ['Authorization' => 'Bearer ' . $this->bearerToken]]);
         $endpointQuery = $domain . self::ENDPOINT;
