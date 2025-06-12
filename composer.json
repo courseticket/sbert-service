@@ -15,7 +15,7 @@
   },
   "require": {
     "php": ">=8.3",
-    "freefri/cake-rest-api": "dev-cakephp5-3",
+    "freefri/cake-rest-api": ">=0.6.0",
     "cakephp/cakephp": "5.2.*"
   },
   "require-dev": {
